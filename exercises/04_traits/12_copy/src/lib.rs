@@ -17,7 +17,7 @@ impl std::ops::Add for WrappingU32 {
 
     fn add(self, rhs: Self) -> Self {
         WrappingU32 {
-            value: self.value + rhs.value,
+            value: self.value.wrapping_add(rhs.value),
         }
     }
 }
