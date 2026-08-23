@@ -15,7 +15,20 @@ pub fn fibonacci(n: u32) -> u32 {
     //
     // Hint: use a `Vec` to memoize the results you have already calculated
     // so that you don't have to recalculate them several times.
-    todo!()
+    let n = n as usize;
+    let mut seq = vec![0, 1];
+    for i in 2..=n {
+        seq.push(seq[i - 1] + seq[i - 2]);
+    }
+    seq[n]
+
+    // Using recursion
+    // Works, but is kind of cheating. The exercise clearly wants us to use a vec
+    // match n {
+    //     0 => 0,
+    //     1 => 1,
+    //     _ => fibonacci(n - 1) + fibonacci(n - 2),
+    // }
 }
 
 #[cfg(test)]
