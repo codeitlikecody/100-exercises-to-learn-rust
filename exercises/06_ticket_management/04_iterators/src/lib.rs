@@ -13,6 +13,30 @@ pub struct TicketStore {
     tickets: Vec<Ticket>,
 }
 
+pub struct TicketStoreIter {
+    tickets: TicketStore,
+}
+
+impl IntoIterator for TicketStore {
+    type Item = Ticket;
+    type IntoIter = TicketStoreIter;
+    fn into_iter(self) -> Self::IntoIter {
+        TicketStoreIter { tickets: self }
+    }
+}
+
+impl Iterator for TicketStoreIter {
+    type Item = Ticket;
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.tickets.tickets.len() == 0 {
+            return None;
+        } else {
+            let ticket = self.tickets.tickets.remove(0);
+            return Some(ticket);
+        }
+    }
+}
+
 #[derive(Clone, Debug, PartialEq)]
 pub struct Ticket {
     pub title: TicketTitle,
